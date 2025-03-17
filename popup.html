@@ -5,10 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Better Anton Losada</title>
     <script src="popup.js" defer></script>
+    <style>
+        body{
+            min-width: 200px;
+            min-height: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            -webkit-user-drag: none;
+            user-select: none;
+        }
+        #container{
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+        }
+        #losadaFull{
+        }
+        #losadaCigar{
+            transform: translateX(5px) translateY(5px);
+        }
+        #losadaCigar.active{
+            transform: translateX(0px) translateY(0px);
+        }
+        img, #imgContainer{
+            -webkit-user-drag: none;
+            width: 25px;
+            height: 25px;
+            top: 0;
+            display: flex;
+        }
+        img{
+            position: absolute;
+            top: 10px;
+            width: auto;
+            height: 25px;
+        }
+        #tittle{
+            display: flex;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+    </style>
 </head>
 <body>
-    <label>
-        Better Antón Losada<input type="checkbox" id="autoRunCheckbox">
-    </label>
+    <div id="container">
+        <div id="tittle">BETTER ANTÓN LOSADA</div>
+        <div id="imgContainer">
+            <img id="losadaCigar" src="losadaCigar.png"/>
+            <img id="losadaFull" src="losadaSemi.png"/>
+        </div>
+    </div>
+    <input type="checkbox" id="autoRunCheckbox">
 </body>
 </html>

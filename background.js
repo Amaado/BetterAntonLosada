@@ -1,4 +1,3 @@
-// Escuchar la instalación de la extensión para activar el servicio
 chrome.runtime.onInstalled.addListener(() => {
   console.log("Extensión instalada y el service worker está funcionando");
 });
@@ -9,34 +8,35 @@ chrome.action.onClicked.addListener((tab) => {
   ejecutarCodigo(tab.id);
 });
 
-// Escuchar cuando una nueva página se carga
-chrome.webNavigation.onCompleted.addListener((details) => {
-  if (details.frameId !== 0) return; // Solo ejecutamos en el frame principal
-  if (!details.url.startsWith("https://www.edu.xunta.gal/centros/ieslosadadieguez/aulavirtual/")) return;
-
-  // Verificar si el checkbox está activado
-  chrome.storage.sync.get("autoRunEnabled", (data) => {
-      if (data.autoRunEnabled) {
-          ejecutarCodigo(details.tabId);
-      }
-  });
-}, { url: [{ hostContains: 'edu.xunta.gal' }] }); // Escuchar solo las URLs que coincidan
+// Escuchar cuando se navega a una nueva página
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.status === 'complete' && tab && tab.url) { // Verificar si 'tab' y 'tab.url' están definidos
+    if (tab.url.startsWith("https://www.edu.xunta.gal/centros/")) {
+      // Verificar si el checkbox está activado
+      chrome.storage.sync.get("autoRunEnabled", (data) => {
+        if (data.autoRunEnabled) {
+          ejecutarCodigo(tabId);
+        }
+      });
+    }
+  }
+});
 
 // Ejecutar el código para modificar el padding de la página
 function ejecutarCodigo(tabId) {
   chrome.scripting.executeScript({
-      target: { tabId: tabId },
-      func: modificarPagina
+    target: { tabId: tabId },
+    func: modificarPagina
   });
 }
 
 // Modificar el padding de la página
 function modificarPagina() {
-  console.log("Modificando padding de la página");
-  document.body.style.padding = "0"; // Eliminar padding global si es necesario
-  
-  // Modificar los elementos que ya están en la página
   document.querySelectorAll(".activity-item:not(.activityinline)").forEach(elemento => {
-      elemento.style.padding = "0"; // Eliminar padding específico
+    elemento.style.padding = "0";
+  });
+  document.querySelectorAll(".activityiconcontainer").forEach(elemento => {
+    elemento.style.width = "30px";
+    elemento.style.height = "30px";
   });
 }
