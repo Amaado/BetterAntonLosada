@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Better Anton Losada",
+  "version": "1.0",
+  "description": "Extension description",
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://*/*",
+    "http://*/*"
+  ],
+  "action": {
+    "default_icon": "losadaFull.png",
+    "default_title": "Better Antón Losada",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}
