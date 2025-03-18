@@ -4,36 +4,45 @@ document.addEventListener("DOMContentLoaded", () => {
     // Cargar el estado guardado del checkbox
     chrome.storage.sync.get("autoRunEnabled", (data) => {
         checkbox.checked = data.autoRunEnabled || false;
+        let losadaCigar = document.getElementById("losadaCigar");
+        let smoke = document.getElementById("smoke");
+        let burn = document.getElementById("burn");
+
         if (checkbox.checked) {
-            document.getElementById("losadaCigar").style.transition = "transform 0s ease";
-            document.getElementById("losadaCigar").classList.add("active");
-            setTimeout(() => {
-                document.getElementById("losadaCigar").style.transition = "transform 0.3s ease";
-            }, 100);
+            losadaCigar.classList.add("active");
+            smoke.classList.add("active");
+            burn.classList.add("active");
         } else {
-            document.getElementById("losadaCigar").style.transition = "transform 0s ease";
-            document.getElementById("losadaCigar").classList.remove("active");
-            setTimeout(() => {
-                document.getElementById("losadaCigar").style.transition = "transform 0.3s ease";
-            }, 100);
-            }
+            losadaCigar.classList.remove("active");
+            smoke.classList.remove("active");
+            burn.classList.remove("active");
+        }
     });
 
     // Guardar el estado cuando cambia
     checkbox.addEventListener("change", () => {
         console.log("Cambio de estado del checkbox:", checkbox.checked);
-        
+
         // Guardar el estado del checkbox
         chrome.storage.sync.set({ autoRunEnabled: checkbox.checked });
+        let losadaCigar = document.getElementById("losadaCigar");
+        let smoke = document.getElementById("smoke");
+        let burn = document.getElementById("burn");
 
         // Cambiar el padding, width y height de la página según el estado del checkbox
         if (checkbox.checked) {
             // Cuando está activado, establecer el padding en 0rem y el width y height en 50px
-            document.getElementById("losadaCigar").classList.add("active");
+            losadaCigar.style.animation = "slide-in 0.7s linear forwards";
+            setTimeout(() => {
+                smoke.classList.add("active");
+                burn.classList.add("active");
+            }, 700);
             cambiarEstilos(0.1, 30);
         } else {
             // Cuando está desactivado, establecer el padding en 1rem y el width y height en 30px
-            document.getElementById("losadaCigar").classList.remove("active");
+            losadaCigar.style.animation = "slide-out 0.7s linear forwards";
+            smoke.classList.remove("active");
+            burn.classList.remove("active");
             cambiarEstilos(1, 50);
         }
     });

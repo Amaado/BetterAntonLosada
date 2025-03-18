@@ -24,11 +24,34 @@
         #losadaFull{
         }
         #losadaCigar{
-            transform: translateX(5px) translateY(5px);
+            transform: translateX(-25px) translateY(35px) rotateZ(-40deg);
         }
         #losadaCigar.active{
-            transform: translateX(0px) translateY(0px);
+            transform: translateX(0px) translateY(0px) rotateZ(0deg);
         }
+        @keyframes slide-in {
+            0% {
+                transform: translateX(-25px) translateY(35px) rotateZ(-40deg);
+            }
+            60%{
+                transform: translateX(-15px) translateY(-12px);
+            }
+            100% {
+                transform: translateX(0px) translateY(0px) rotateZ(0deg);
+            }
+        }
+        @keyframes slide-out {
+            0% {
+                transform: translateX(0px) translateY(0px) rotateZ(0deg);
+            }
+            40% {
+                transform: translateX(-15px) translateY(-12px);
+            }
+            100% {
+                transform: translateX(-25px) translateY(35px) rotateZ(-40deg);
+            }
+        }
+
         img, #imgContainer{
             -webkit-user-drag: none;
             width: 25px;
@@ -47,6 +70,20 @@
             font-weight: bold;
             font-size: 14px;
         }
+        .gif{
+            position: absolute;
+            opacity: 0;
+            transition: 0.3s ease;
+        }
+        .gif.active{
+            opacity: 1;
+        }
+        #smoke{
+            transform: translateX(-3px) translateY(-11px) scale(1) rotateZ(0deg);
+        }
+        #burn{
+            transform: translateX(1px) translateY(0px) scale(0.9) rotateZ(60deg);
+        }
 
     </style>
 </head>
@@ -56,6 +93,8 @@
         <div id="imgContainer">
             <img id="losadaCigar" src="losadaCigar.png"/>
             <img id="losadaFull" src="losadaSemi.png"/>
+            <img id="smoke" class="gif" src="smoke.gif"/>
+            <img id="burn" class="gif" src="burn.gif"/>
         </div>
     </div>
     <input type="checkbox" id="autoRunCheckbox">
