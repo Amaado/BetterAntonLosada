@@ -2,19 +2,16 @@
   "manifest_version": 3,
   "name": "Better Anton Losada",
   "version": "1.0",
-  "description": "Extension description",
+  "description": "Un mejor menú para el aula virtual",
   "permissions": [
     "storage",
     "scripting",
     "activeTab"
   ],
   "host_permissions": [
-    "https://*/*",
-    "http://*/*"
+    "https://www.edu.xunta.gal/centros/*"
   ],
   "action": {
-    "default_icon": "losadaFull.png",
-    "default_title": "Better Antón Losada",
     "default_popup": "popup.html"
   },
   "background": {
