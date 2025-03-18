@@ -46,6 +46,14 @@ document.addEventListener("DOMContentLoaded", () => {
             cambiarEstilos(1, 50);
         }
     });
+
+    document.body.addEventListener("click", function(e) {
+        if (e.target.contains(checkbox)) {
+            return;
+        }
+        checkbox.click();
+    });
+    
 });
 
 // Función para cambiar el padding, width y height de la página
