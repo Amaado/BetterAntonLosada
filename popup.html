@@ -32,19 +32,22 @@
         @keyframes slide-in {
             0% {
                 transform: translateX(-25px) translateY(35px) rotateZ(-40deg);
+                animation-timing-function: cubic-bezier(0.33333, 0.66667, 0.66667, 1);
             }
-            60%{
+            69.0983%{
                 transform: translateX(-15px) translateY(-12px);
+                animation-timing-function: cubic-bezier(0.33333, 0, 0.66667, 0.33333);
             }
             100% {
                 transform: translateX(0px) translateY(0px) rotateZ(0deg);
+                animation-timing-function: cubic-bezier(0.33333, 0.66667, 0.66667, 1);
             }
         }
         @keyframes slide-out {
             0% {
                 transform: translateX(0px) translateY(0px) rotateZ(0deg);
             }
-            40% {
+            30.9017% {
                 transform: translateX(-15px) translateY(-12px);
             }
             100% {
